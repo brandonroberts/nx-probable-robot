@@ -114,6 +114,33 @@
           }
         }
       }
+    },
+    "user-search": {
+      "projectType": "library",
+      "root": "libs/user-search",
+      "sourceRoot": "libs/user-search/src",
+      "prefix": "mygh",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/user-search/tsconfig.lib.json",
+              "libs/user-search/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/user-search/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/user-search/jest.config.js",
+            "tsConfig": "libs/user-search/tsconfig.spec.json",
+            "setupFile": "libs/user-search/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {
