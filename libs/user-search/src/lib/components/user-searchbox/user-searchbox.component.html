@@ -1,0 +1,3 @@
+<input type="text" name="searchTerms" #searchTerms (keyup.enter)="search.emit(searchTerms.value)"/>
+
+<button type="submit" (click)="search.emit(searchTerms.value)">Search Users</button>

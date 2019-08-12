@@ -1,0 +1,5 @@
+<li *ngFor="let item of results">
+  <a href="{{ item.html_url }}" title="{{ item.login }}">
+    <img [src]="item.avatar_url" width="200" height="200"/>
+  </a>
+</li>

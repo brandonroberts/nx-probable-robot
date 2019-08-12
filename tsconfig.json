@@ -16,7 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mygh/user-search": ["libs/user-search/src/index.ts"]
+      "@mygh/user-search": ["libs/user-search/src/index.ts"],
+      "@mygh/user-search/state/*": [
+        "libs/user-search/src/lib/+state/*"
+      ],
+      "@mygh/github-data-access": ["libs/github-data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

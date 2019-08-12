@@ -16,6 +16,9 @@
     },
     "user-search": {
       "tags": []
+    },
+    "github-data-access": {
+      "tags": []
     }
   }
 }

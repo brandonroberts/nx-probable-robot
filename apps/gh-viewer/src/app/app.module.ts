@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -11,6 +13,11 @@ import { environment } from '../environments/environment';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: '/search', pathMatch: 'full' },
+      { path: 'search', loadChildren: () => import('@mygh/user-search').then(mod => mod.UserSearchModule) }
+    ]),
     StoreModule.forRoot(
       {},
       {
@@ -22,7 +29,9 @@ import { environment } from '../environments/environment';
       }
     ),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx GitHub Search'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

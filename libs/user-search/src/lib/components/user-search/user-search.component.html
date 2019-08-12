@@ -1,0 +1,14 @@
+GitHub Search
+
+<mygh-user-searchbox (search)="onSearch($event)"></mygh-user-searchbox>
+
+<mygh-user-results
+  [results]="results$ | async">
+</mygh-user-results>
+
+<div *ngIf="(total$ | async) > 0">
+  Total: {{ total$ | async }}
+
+  <!-- <button *ngIf="page !== 1" (click)="previousPage()">Previous</button> -->
+  <!-- <button (click)="nextPage()" *ngIf="(total$ | async) === 30">Next</button> -->
+</div>

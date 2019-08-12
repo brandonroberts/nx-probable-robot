@@ -141,6 +141,33 @@
         }
       },
       "schematics": {}
+    },
+    "github-data-access": {
+      "projectType": "library",
+      "root": "libs/github-data-access",
+      "sourceRoot": "libs/github-data-access/src",
+      "prefix": "mygh",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/github-data-access/tsconfig.lib.json",
+              "libs/github-data-access/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/github-data-access/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/github-data-access/jest.config.js",
+            "tsConfig": "libs/github-data-access/tsconfig.spec.json",
+            "setupFile": "libs/github-data-access/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {
