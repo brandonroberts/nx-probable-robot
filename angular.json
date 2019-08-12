@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "projects": {
+    "gh-viewer": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/gh-viewer",
+      "sourceRoot": "apps/gh-viewer/src",
+      "prefix": "mygh",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/gh-viewer",
+            "index": "apps/gh-viewer/src/index.html",
+            "main": "apps/gh-viewer/src/main.ts",
+            "polyfills": "apps/gh-viewer/src/polyfills.ts",
+            "tsConfig": "apps/gh-viewer/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/gh-viewer/src/favicon.ico",
+              "apps/gh-viewer/src/assets"
+            ],
+            "styles": ["apps/gh-viewer/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/gh-viewer/src/environments/environment.ts",
+                  "with": "apps/gh-viewer/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "gh-viewer:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "gh-viewer:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "gh-viewer:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/gh-viewer/tsconfig.app.json",
+              "apps/gh-viewer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/gh-viewer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/gh-viewer/jest.config.js",
+            "tsConfig": "apps/gh-viewer/tsconfig.spec.json",
+            "setupFile": "apps/gh-viewer/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "gh-viewer-e2e": {
+      "root": "apps/gh-viewer-e2e",
+      "sourceRoot": "apps/gh-viewer-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/gh-viewer-e2e/cypress.json",
+            "tsConfig": "apps/gh-viewer-e2e/tsconfig.e2e.json",
+            "devServerTarget": "gh-viewer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "gh-viewer:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/gh-viewer-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/gh-viewer-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "gh-viewer"
+}
